@@ -1,16 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1c1917;
+  /* Dark theme — premium barbershop aesthetic, precision and craft */
+  --bg: oklch(0.14 0.018 200);
+  --bg-surface: oklch(0.19 0.018 200);
+  --bg-raised: oklch(0.24 0.016 200);
+  --text-primary: oklch(0.95 0.008 90);
+  --text-secondary: oklch(0.68 0.022 90);
+  --text-muted: oklch(0.48 0.016 90);
+  --accent: oklch(0.76 0.16 85);
+  --accent-hover: oklch(0.70 0.18 85);
+  --accent-dim: oklch(0.76 0.16 85 / 0.12);
+  --accent-light: oklch(0.92 0.06 85);
+  --border: oklch(0.30 0.020 200);
+  --border-subtle: oklch(0.22 0.016 200);
+}
+
+@theme inline {
+  --color-background: oklch(0.14 0.018 200);
+  --color-foreground: oklch(0.95 0.008 90);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+  background: oklch(0.14 0.018 200);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  background: var(--bg) !important;
+  color: var(--text-primary) !important;
+  font-family: "Albert Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.delay-1 { animation-delay: 80ms; }
+.delay-2 { animation-delay: 160ms; }
+.delay-3 { animation-delay: 240ms; }
+.delay-4 { animation-delay: 320ms; }
+.delay-5 { animation-delay: 400ms; }
+.delay-6 { animation-delay: 480ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none;
+  }
 }
